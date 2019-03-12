@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+
 // TODO: You may need to add other libraries here!
 using namespace std;
 
@@ -24,9 +25,9 @@ private:
     string email_addr;
 public:
     Email(string type, string email_addr);
-    set_contact();
-    get_contact(string style);
-    print();
+    void set_contact();
+    string get_contact(string style);
+    void print();
     // TODO: Complete me!
 };
 
@@ -37,9 +38,10 @@ private:
 	long int phone_num; 
 public:
     Phone(string type, string phone_number);
-    set_contact();
-    get_contact(string style);
-    print();
+    void set_contact();
+    string get_contact(string style);
+    void print();
+    string numby;
     // TODO: Complete me!
 };
 
