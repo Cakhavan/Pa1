@@ -19,7 +19,12 @@ int main(){
         * And remember, you have a deadline for this PA!
        */ 
           while ((ent = readdir (dir)) != NULL) {
-              cout << ent->d_name << endl;
+              int length = strlen(ent->d_name);
+              if (strncmp(ent->d_name + length - 4, ".cpp", 4) == 0) 
+              {
+                cout << ent->d_name << endl;
+              }   
+
           }
           closedir (dir);
     } else {
@@ -30,3 +35,27 @@ int main(){
 
     return 0;
 }
+
+
+    // #!/usr/bin/perl
+
+    // use strict;
+    // use warnings;
+
+    // my $dir = '/tmp';
+
+    // opendir(DIR, $dir) or die $!;
+
+    // while (my $file = readdir(DIR)) {
+
+    //     # We only want files
+    //     next unless (-f "$dir/$file");
+
+    //     # Use a regular expression to find files ending in .txt
+    //     next unless ($file =~ m/\.txt$/);
+
+    //     print "$file\n";
+    // }
+
+    // closedir(DIR);
+    // exit 0;

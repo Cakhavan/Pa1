@@ -4,6 +4,7 @@
 
 #include "connection.h"
 #include "date.h"
+#include "contact.h"
 // You may need to add more libraries 
 #include <stdlib.h>
 class Network{

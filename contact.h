@@ -17,6 +17,7 @@ public:
 	virtual void print() = 0;
     virtual string get_contact(string style="full") = 0;
 	virtual void set_contact() = 0;
+
 };
 
 
@@ -24,10 +25,11 @@ class Email: public Contact{
 private:
     string email_addr;
 public:
-    Email(string type, string email_addr);
-    void set_contact();
-    string get_contact(string style);
     void print();
+    string get_contact(string style="full");
+    void set_contact();
+    Email(string type, string email_addr);
+ 
     // TODO: Complete me!
 };
 
@@ -37,10 +39,12 @@ private:
     // TODO: modify dataType! Can int store 10 digit phone-number? 
 	long int phone_num; 
 public:
+    void print();
+    string get_contact(string style ="full");
     Phone(string type, string phone_number);
     void set_contact();
-    string get_contact(string style);
-    void print();
+ 
+    
     string numby;
     // TODO: Complete me!
 };

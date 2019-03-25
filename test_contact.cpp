@@ -1,14 +1,14 @@
 #include <iostream>
-#include "contact.cpp"
+#include "contact.h"
 
 int main(){
 
-	Phone* phone;
-	Email* email;
-
-	phone->set_contact();
+	//Phone* phone;
+	Phone phone("work", "6504301463");
+	phone.set_contact();
+	phone.print();
 
 	
-
+	
     return 0;
 }

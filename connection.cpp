@@ -10,6 +10,8 @@ Connection::Connection(){
 Connection::~Connection(){
     // TODO: Complete me!
     delete birthdate;
+    delete phone;
+    delete email;
 }
 
 
@@ -19,8 +21,15 @@ Connection::Connection(string f_name, string l_name, string bdate, string email,
     this->f_name = f_name;
     this->l_name = l_name;
     this->birthdate = new Date(bdate);
-    this->email = new Contact("email", email);
-    this->phone = new Contact("phone", phone);
+    if(email.find(")") != -1)
+    {
+       this->email = new Email(email.substr(1,email.find(")")-1), email.substr(email.find(")")+1, email.length()-email.find(")")+1));
+       
+    }
+    if(phone.find(")") != -1)
+    {
+        this->phone = new Phone(phone.substr(1,phone.find(")")-1), phone.substr(phone.find(")")+1, phone.length()-phone.find(")")+1));
+    }
 }
 
 
@@ -54,14 +63,14 @@ void Connection::set_connection(){
     cout << "Email address: ";
     std::getline(std::cin,temp);
 
-    email = new Contact(type,temp);
+    email = new Email(type,temp);
 
 
     cout << "Type of phone number: ";
     std::getline(std::cin,type);
     cout << "Phone number: ";
     std::getline(std::cin,temp);
-    phone = new Contact(type,temp);
+    phone = new Phone(type,temp);
 }
 
 
@@ -77,21 +86,27 @@ void Connection::set_connection(string filename){
     // Line #1: "first name, lastname"
     string line;
     getline(file, line);
-    cout << "First Name: " << f_name << endl;
-    this->f_name =  line.substring(0,line.indexOf(','));
-    cout << "Last Name: " << this->l_name << endl;
-    this->l_name = line.substring(line.indexOf(',')+1,line.length()-line.indexOf(','));
+   // cout << "First Name: " << f_name << endl;
+    this->f_name =  line.substr(0,line.find(','));
+   // cout << "Last Name: " << this->l_name << endl;
+    this->l_name = line.substr(line.find(',')+1,line.length()-line.find(','));
     // Line #2: date of birth in string format 
     getline(file, line);
     this-> birthdate = new Date(line);
 
     //line #3
     getline(file, line);
-    string type = line.substring(0,line.indexOf(')'));
-    string email = line.substring(line.indexOf(')')+1, line.length()-1);
-    this->email = new Contact(type, email);
-    cout << "type: " << type << endl;
-    cout << "email: " << email << endl;
+    string type = line.substr(0,line.find(')'));
+    string email = line.substr(line.find(')')+1, line.length()-1);
+    this->email = new Email(type, email);
+    //cout << "type: " << type << endl;
+    //cout << "email: " << email << endl;
+
+    //line #4
+    getline(file, line);
+    type = line.substr(0,line.find(')'));
+    string phone = line.substr(line.find(')')+1, line.length()-1);
+    this->phone = new Phone(type, phone);
 
 }
 
@@ -99,8 +114,7 @@ void Connection::set_connection(string filename){
 bool Connection::operator==(const Connection& rhs){
     // TODO: Complete this method!
     // Note: Difference to Lab is that from now on the combination of fname-lname is unique for any connection
-    if ( (this->f_name == rhs.f_name) && (this->l_name == rhs.l_name) 
-        && (this->birthdate->operator==(*rhs.birthdate)) && (this->email == rhs.email) && (this->phone == rhs.phone))
+    if ( (this->f_name == rhs.f_name) && (this->l_name == rhs.l_name))
     {
         return true;
     }
