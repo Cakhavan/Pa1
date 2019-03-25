@@ -251,9 +251,9 @@ void Network::sendEmail(string addr, string subject, string content, string atta
 
     content = "\"" + content + "\"";
     subject = "\"" + subject + "\"";
-    attachment = "\"" + attachment + "";
+    attachment = "\"" + attachment + "\"";
     string cmd;
-    cmd = "echo " + content + " | mailx -s " + subject + " -a " + attachment + addr;
+    cmd = "echo " + content + " | mailx -s " + subject + " -a " + attachment + " " + addr;
     cout << cmd << endl;
     system(cmd.c_str());
 
