@@ -1,0 +1,6 @@
+Assignment: PA1
+Author: Cameron Akhavan
+Class: EE355
+
+
+This program has been checked for any non-working parts and all parts work properly as instructed
